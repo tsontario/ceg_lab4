@@ -39,6 +39,7 @@ class Server {
         message = message.replaceAll("\\+00\\+", "0000");
         message = message.replaceAll("\\-00\\-", "0000");
         message = message.replaceAll("\\-", "+");
+        message = message.replaceAll("\\+", "1");
         System.out.printf("DECODED MESSAGE: %s\n", message);
       }
 
