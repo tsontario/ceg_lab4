@@ -88,7 +88,6 @@ class Client {
     while (i < input.length()) {
       if (inputList.get(i) == '1') {
         result.add(onesPolarity);
-        result.add(input.charAt(i));
         onesPolarity = oppositePolarity(onesPolarity);
         numOnes += 1;
         i += 1;
@@ -98,18 +97,15 @@ class Client {
         if (segment.equals(fourZeros())) {
           if (numOnes %2 == 0) {
             result.add(onesPolarity);
-            result.add('B');
             result.add('0');
             result.add('0');
             result.add(onesPolarity);
-            result.add('V');
             onesPolarity = oppositePolarity(onesPolarity);
           } else {
             result.add('0');
             result.add('0');
             result.add('0');
             result.add(oppositePolarity(onesPolarity));
-            result.add('V');
             numOnes = 0;
           }
           i += 4;
