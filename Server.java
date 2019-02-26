@@ -29,7 +29,7 @@ class Server {
         output.println("clear-to-send");
 
         message = input.readLine();
-        output.println(message);
+        System.out.println(message);
         // serviceSocket.close();
       }
 
