@@ -35,7 +35,11 @@ class Server {
         System.out.println("Decoding message...");
 
 
-        // serviceSocket.close();
+        message = message.replaceAll("000[\\-\\+]", "0000");
+        message = message.replaceAll("\\+00\\+", "0000");
+        message = message.replaceAll("\\-00\\-", "0000");
+        message = message.replaceAll("\\-", "+");
+        System.out.printf("DECODED MESSAGE: %s\n", message);
       }
 
     } catch (IOException e) {
