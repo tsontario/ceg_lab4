@@ -2,6 +2,7 @@ import java.net.*;
 import java.io.IOException;
 import java.io.DataInputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 class Server {
     
@@ -29,7 +30,11 @@ class Server {
         output.println("clear-to-send");
 
         message = input.readLine();
-        System.out.println(message);
+        output.println("receipt-acknowledged");
+        System.out.printf("GOT MESSAGE: %s\n", message);
+        System.out.println("Decoding message...");
+
+
         // serviceSocket.close();
       }
 
@@ -37,5 +42,14 @@ class Server {
       System.out.printf("Encountered error: %s. Shutting down\n", e);
       System.exit(1);
     }
+  }
+
+  private static String HDB3Decode(String input) {
+    ArrayList<Character> inputList = new ArrayList<>();
+    for (char c : input.toCharArray()) {
+      inputList.add(c);
+    }
+
+    return "";
   }
 }

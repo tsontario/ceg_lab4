@@ -16,10 +16,8 @@ class Client {
     }
 
     // Convert to HDB3
+    System.out.println("Encoding bitstream...");
     ArrayList<Character> bitStream = getHDB3BitStream(args[0]);
-    for (Character c : bitStream) {
-      System.out.print(c);
-    }
 
     // Initialize socket components
     Socket myClient;
@@ -27,11 +25,13 @@ class Client {
     DataInputStream input;
     try {
       // init
+      System.out.println("Opening socket connection");
       myClient = new Socket("localhost", 8080);
       output = new DataOutputStream(myClient.getOutputStream());
       input = new DataInputStream(myClient.getInputStream());
 
       // initial request-to-send
+      System.out.println("Sending request-to-send");
       output.writeBytes("request-to-send\n");
       String response;
       response = input.readLine();
@@ -39,14 +39,20 @@ class Client {
         System.out.println(response);
         System.exit(1);
       }
-
+      System.out.printf("GOT RESPONSE: %s\n", response);
+      
       // transmitting HDB3 sequence
       System.out.println("Transmitting HDB3 sequence...");
-      output.writeBytes(bitStream.toString());
+      StringBuilder sb = new StringBuilder();
+      for (Character s : bitStream)
+      {
+        sb.append(s);
+      }
+      output.writeBytes(sb + "\n");
 
       // response from server
       response = input.readLine();
-      System.out.println(response);
+      System.out.printf("Final response from server: %s\n", response);
 
       // cleanup
       input.close();
