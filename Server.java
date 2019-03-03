@@ -53,13 +53,4 @@ class Server {
       System.exit(1);
     }
   }
-
-  private static String HDB3Decode(String input) {
-    ArrayList<Character> inputList = new ArrayList<>();
-    for (char c : input.toCharArray()) {
-      inputList.add(c);
-    }
-
-    return "";
-  }
 }
