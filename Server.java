@@ -34,13 +34,18 @@ class Server {
         System.out.printf("GOT MESSAGE: %s\n", message);
         System.out.println("Decoding message...");
 
+        input.close();
+        output.close();
 
-        message = message.replaceAll("000[\\-\\+]", "0000");
+        // Decode from HDB3
+        message = message.replaceAll("\\+000\\+", "10000");
+        message = message.replaceAll("\\-000\\-", "10000");
         message = message.replaceAll("\\+00\\+", "0000");
         message = message.replaceAll("\\-00\\-", "0000");
         message = message.replaceAll("\\-", "+");
         message = message.replaceAll("\\+", "1");
         System.out.printf("DECODED MESSAGE: %s\n", message);
+
       }
 
     } catch (IOException e) {

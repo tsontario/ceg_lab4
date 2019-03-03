@@ -74,7 +74,7 @@ class Client {
     return true;
   }
 
-  // getHDB3BitStream return the HDB3 encoding, as a Character ArrayList, of the provided input string
+  // getHDB3BitStream returns the HDB3 encoding, as a Character ArrayList, of the provided input string
   private static ArrayList<Character> getHDB3BitStream(String input) {
     Character onesPolarity = '+';
     ArrayList<Character> inputList = new ArrayList<>();
@@ -82,7 +82,7 @@ class Client {
       inputList.add(c);
     }
     ArrayList<Character> result = new ArrayList<>();
-    
+
     int i = 0;
     int numOnes = 0;
     while (i < input.length()) {
@@ -106,10 +106,13 @@ class Client {
             result.add('0');
             result.add('0');
             result.add(oppositePolarity(onesPolarity));
-            numOnes = 0;
           }
+          numOnes = 0;
           i += 4;
-        } 
+        } else {
+          result.add('0');  // Handles edge case (e.g. 0001)
+          i += 1;
+        }
       }
       else {
         result.add('0');
